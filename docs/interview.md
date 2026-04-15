@@ -455,6 +455,8 @@
 - <details><summary>渲染流程</summary></details>
 - <details><summary>与粒子系统/3D物体一起使用的问题(层级关系/遮挡等)</summary></details>
 - <details><summary>UIParticle原理</summary></details>
+- <details><summary>Text/TMP区别</summary></details>
+- <details><summary>Mask/Rect2DMask</summary></details>
 - <details><summary>UGUI优化(Rebuild/合批/Layout/GC)</summary></details>
 - <details><summary>实际问题：ScrollView优化</summary></details>
 
