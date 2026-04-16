@@ -451,11 +451,62 @@
 - <details><summary>Mono生命周期函数</summary></details>
 
 ### 1.2.2 UGUI
-- <details><summary>源码</summary></details>
+- <details><summary>源码</summary>
+  
+  - Graphic
+    - 生成Mesh
+    - 脏标记系统(SetDirty)
+      - SetVerticeDirty()
+        - vertice
+        - uv
+        - color
+        - triangle
+      - SetMaterialDirty()
+      - SetLayoutDirty()
+  - Canvas
+  - CanvasUpdateRegistroy
+  - Layout
+  - CanvasRender
+  - EventSystem
+  </details>
 - <details><summary>渲染流程</summary></details>
 - <details><summary>与粒子系统/3D物体一起使用的问题(层级关系/遮挡等)</summary></details>
 - <details><summary>UIParticle原理</summary></details>
-- <details><summary>Text/TMP区别</summary></details>
+- <details><summary>Text/TMP区别</summary>
+  
+  - Text（旧版）
+    - 特点：
+      - 每次改 text → 重新生成 Mesh
+      - 实现简单 → CPU 较低
+      - 但：
+      - ❌ GC 多（string、builder等）
+      - ❌ 不可控
+
+  - TMP
+    - 特点：
+      - Mesh 生成更复杂
+      - 但：
+      - ✅ 使用缓存数组（减少 GC）
+      - ❌ CPU 更重（排版复杂）
+  
+  - 核心区别：
+    - Text：简单粗暴（便宜但不稳定）
+    - TMP：复杂可控（稳定但更贵）
+
+  - 排行榜场景下谁更好？
+    - 答案是：大多数情况下还是 TMP 更好
+    - 虽然 TMP 更贵，但：
+  
+    - ❌ Text 的问题：
+      - GC 抖动（更致命）
+      - 字体模糊
+      - 控制弱
+
+    - ✅ TMP 的优势：
+      - 可控（你可以优化）
+      - 不容易 GC 抖动
+      - 表现稳定
+  </details>
 - <details><summary>Mask/Rect2DMask</summary></details>
 - <details><summary>UGUI优化(Rebuild/合批/Layout/GC)</summary></details>
 - <details><summary>实际问题：ScrollView优化</summary></details>
